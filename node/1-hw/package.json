@@ -1,0 +1,12 @@
+{
+  "name": "1-hw",
+  "version": "1.0.0",
+  "description": "show files tree",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "hello"
+  },
+  "author": "",
+  "license": "ISC"
+}
