@@ -1,12 +1,32 @@
 {
-  "name": "1-hw",
-  "version": "1.0.0",
+  "name": "show-tree",
+  "version": "1.0.3",
   "description": "show files tree",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "hello"
+  "main": "dist/index.js",
+  "bin": {
+    "show-tree": "dist/bin/showFilesTree.js"
   },
-  "author": "",
-  "license": "ISC"
+  "engines": {
+    "node": ">=14"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "node dist/bin/showFilesTree.js",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build",
+    "firstTask": "node firstTask.js"
+  },
+  "author": "Kochetov Evgeniy",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.12",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11"
+  },
+  "dependencies": {
+    "commander": "^8.3.0"
+  }
 }
