@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import { program } from 'commander';
 
 import showTree from '../index';

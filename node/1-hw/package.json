@@ -1,6 +1,6 @@
 {
   "name": "show-tree",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "show files tree",
   "main": "dist/index.js",
   "bin": {

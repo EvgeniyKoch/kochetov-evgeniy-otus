@@ -1,5 +1,5 @@
      Node Home work one
-  - To start first task type npm run firstTask
+  - To start first task type  - npm run firstTask
   - To start second task:
    1. make build
    2. make publish
