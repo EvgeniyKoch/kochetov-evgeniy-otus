@@ -28,7 +28,7 @@ const ident = (depth, tab = 2) => " ".repeat(depth * tab);
 const dirParent = "├───";
 const dirChild = "└───";
 
-const showTree = ({ name, items }) => {
+export const showTree = ({ name, items }) => {
   const iter = (list, isChild, str, count) => {
     const space = isChild ? `│${ident(count)}` : "";
     const dir = isChild ? dirChild : dirParent;
@@ -48,4 +48,3 @@ const showTree = ({ name, items }) => {
   return iter(items, false, `${name}\n`, 1);
 };
 
-console.log(showTree(data));
