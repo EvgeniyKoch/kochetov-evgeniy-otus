@@ -1,0 +1,4 @@
+src
+├───bin
+│  └───showFilesTree.js
+├───index.js
