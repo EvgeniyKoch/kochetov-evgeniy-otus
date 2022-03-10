@@ -1,10 +1,6 @@
+import { getExpectedResult } from '../services';
 
-import fs from 'fs';
-import path from 'path';
 import { showTree } from "../firstTask";
-
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-const getExpectedResult = (filename) => fs.readFileSync(getFixturePath(filename), 'utf8');
 
 const data = {
   name: 1,

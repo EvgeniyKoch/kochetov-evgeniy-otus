@@ -8,3 +8,6 @@ build:
 publish:
 	npm publish --dry-run
 	npm link
+
+test:
+	npm test
