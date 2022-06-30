@@ -8,7 +8,7 @@ const dirChild = "└───";
 
 const isFile = (path) => {
   try {
-    var stat = fs.lstatSync(path, { throwIfNoEntry: false });
+    const stat = fs.lstatSync(path, { throwIfNoEntry: false });
     return stat.isFile();
   } catch (e) {
     return false;
