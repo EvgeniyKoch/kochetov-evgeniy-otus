@@ -5,11 +5,11 @@ const util = require('util');
 const { mergeSort } = require("./sort.js");
 const pipeline = util.promisify(stream.pipeline)
 
-const MAX_INFLIGH_CHUNKS = 10000000;
+const MAX_IN_FLIGH_CHUNKS = 10000000;
 
 const readableStream = fs.createReadStream("./randomNumbers.txt", {
   encoding: "utf8",
-  highWaterMark: MAX_INFLIGH_CHUNKS,
+  highWaterMark: MAX_IN_FLIGH_CHUNKS,
 });
 
 async function splitByLessFiles(readable) {
@@ -36,7 +36,7 @@ async function run() {
     await pipeline(
       fs.createReadStream(url, {
         encoding: "utf8",
-        highWaterMark: MAX_INFLIGH_CHUNKS,
+        highWaterMark: MAX_IN_FLIGH_CHUNKS,
       }),
       async function* (source) {
         for await (const chunk of source) {
