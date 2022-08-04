@@ -1,0 +1,34 @@
+extends ../layouts/app.pug
+
+block content
+    .container.mt-5
+        .row.d-flex.justify-content-center
+            .col-md-12.col-lg-10.col-xl-8
+                .w-50.overflow-hidden.mx-auto.text-center
+                    img.mw-100(src= course.src, alt= course.title)
+                h1.mt-5.text-center= course.title
+                p.mt-5.text-center= course.description
+    if comments.length > 0
+        section
+            h5 Comments
+            ul.list-unstyled
+                each comment in comments
+                    li.mt-1.mb-1
+                        .row.d-flex.justify-content-center
+                            .col-md-12.col-lg-10.col-xl-8
+                                .card
+                                    .card-body
+                                        div
+                                            h6.fw-bold.text-primary.mb-1= comment.nickname
+                                            p.text-muted.small.mb-2= `Shared publicly  ${comment.created.toLocaleDateString()}`
+                                            p= comment.text
+    if currentUser.isGuest === false
+        div.p-3.mb-5(style='background-color: #f8f9fa;')
+            form.form-outline.w-100(action="/comment/new" method='post')
+                .form-group.mt-5
+                    textarea.form-control(name="text" rows="4" placeholder='Message' style='background: #fff;')
+                input(name="courseId" type="hidden" value= course.id)
+                .float-end.mt-2.pt-1
+                    button.btn.btn-primary.btn-sm.mr-1(type='submit') Post comment
+                    button.btn.btn-outline-primary.btn-sm(type='button') Cancel
+

@@ -1,0 +1,16 @@
+extends ../layouts/app.pug
+
+block content
+    .container
+        form(action=course ? "/course/new/?_method=PUT" : "/course/new" method='post')
+            if course
+                form-group.mt-5
+                    input.form-control(name="courseId" type="hidden" value= course.id)
+            .form-group.mt-5
+                input.form-control(name="src" placeholder='Paste link of picture' value=course && course.src ? course.src : '')
+            .form-group.mt-5
+                input.form-control(name="title" placeholder='Enter title' value=course && course.title ? course.title : '')
+            .form-group.mt-5
+                textarea.form-control(name="description" rows="10" placeholder='Description')= course && course.description ? course.description : ''
+            .form-group.mt-3
+                button.btn.btn-primary(type='submit') Post
