@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import model from "./model.js";
 
-class CourseInstance {
+class FileInstance {
   constructor() {
     this.model = model;
   }
@@ -12,9 +12,9 @@ class CourseInstance {
     }
   }
 
-  findByAuthorId(id) {
+  findByCourseId(id) {
     if (mongoose.Types.ObjectId.isValid(id)) {
-      return this.model.find({ author: id });
+      return this.model.find({ courseId: id });
     }
   }
 
@@ -22,24 +22,17 @@ class CourseInstance {
     return this.model.find();
   }
 
-  create(course) {
-    const instance = new this.model(course);
+  create(file) {
+    const instance = new this.model(file);
 
     return instance.save();
   }
 
-  updateOneById(id, course) {
-    if (mongoose.Types.ObjectId.isValid(id)) {
-      return this.model.updateOne({ _id: id }, { $set: course });
-    }
-  }
-
   deleteOneById(id) {
     if (mongoose.Types.ObjectId.isValid(id)) {
-    return this.model.deleteOne({ _id: id });
-
+      return this.model.deleteOne({ _id: id });
     }
   }
 }
 
-export default new CourseInstance();
+export default new FileInstance();

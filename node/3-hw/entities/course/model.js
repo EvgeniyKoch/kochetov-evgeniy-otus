@@ -12,7 +12,7 @@ const courseSchema = new db.Schema({
     required: true,
   },
   description: {
-    type: db.Mixed,
+    type: String,
     required: true,
   },
   created: {

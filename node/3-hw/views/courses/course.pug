@@ -8,6 +8,14 @@ block content
                     img.mw-100(src= course.src, alt= course.title)
                 h1.mt-5.text-center= course.title
                 p.mt-5.text-center= course.description
+    if files && files.length > 0
+        section
+            h5 Resources
+            ul.list-unstyled
+                each file in files
+                    li.mt-1.mb-1
+                        a(href= `${file.storage}/${file.name}`)= file.name
+
     if comments.length > 0
         section
             h5 Comments

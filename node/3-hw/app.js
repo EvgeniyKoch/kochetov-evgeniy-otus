@@ -1,3 +1,5 @@
+import express from 'express';
+import path from 'path';
 import session from "express-session";
 import bodyParser from "body-parser";
 import methodOverride from "method-override";
@@ -15,6 +17,7 @@ const registerPlugins = (app) => {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(cookieParser());
+  app.use(express.static(path.join(process.cwd(), 'public')));
 
   app.use(
     session({

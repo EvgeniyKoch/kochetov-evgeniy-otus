@@ -2,7 +2,7 @@ extends ../layouts/app.pug
 
 block content
     .container
-        form(action=course ? "/course/new/?_method=PUT" : "/course/new" method='post')
+        form(action=course ? "/course/new/?_method=PUT" : "/course/new" enctype="multipart/form-data" method='post')
             if course
                 form-group.mt-5
                     input.form-control(name="courseId" type="hidden" value= course.id)
@@ -12,5 +12,7 @@ block content
                 input.form-control(name="title" placeholder='Enter title' value=course && course.title ? course.title : '')
             .form-group.mt-5
                 textarea.form-control(name="description" rows="10" placeholder='Description')= course && course.description ? course.description : ''
+            .form-group.mt-5
+                input.form-control(name="files" placeholder='Download files' type="file" multiple)
             .form-group.mt-3
                 button.btn.btn-primary(type='submit') Post

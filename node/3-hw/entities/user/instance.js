@@ -3,6 +3,7 @@ import model from "./model.js";
 class UserInstance {
   constructor() {
     this.model = model;
+    this.isGuest = false;
   }
 
   findOneById(id) {

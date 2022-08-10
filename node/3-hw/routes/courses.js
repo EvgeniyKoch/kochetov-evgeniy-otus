@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 
 import { courseInstance } from "../entities/course/index.js";
+import { fileInstance } from "../entities/file/index.js";
 import { commentInstance } from "../entities/comment/index.js";
+import upload from "../middlewares/upload.js";
 
 export default (app) => {
   app.get("/course/new", (req, res) => {
@@ -16,9 +18,17 @@ export default (app) => {
     res.render("courses/mine", { courses });
   });
 
-  app.post("/course/new", async (req, res) => {
+  app.post("/course/new", upload.array("files", 10), async (req, res) => {
     const { userId } = req.session;
-    await courseInstance.create({ ...req.body, author: userId });
+    const course = await courseInstance.create({ ...req.body, author: userId });
+
+    for await (const file of req.files) {
+      await fileInstance.create({
+        name: file.filename,
+        storage: file.destination,
+        courseId: course._id,
+      });
+    }
 
     res.status(201).render("courses/new");
   });
@@ -48,7 +58,8 @@ export default (app) => {
     const { id } = req.params;
     const course = await courseInstance.findOneById(id);
     const comments = await commentInstance.findByCourseId(id);
+    const files = await fileInstance.findByCourseId(id);
 
-    res.status(200).render("courses/course", { course, comments });
+    res.status(200).render("courses/course", { course, comments, files });
   });
 };
