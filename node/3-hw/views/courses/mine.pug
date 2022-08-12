@@ -1,0 +1,19 @@
+extends ../layouts/app.pug
+
+block content
+  ul.d-flex.flex-wrap.list-unstyled
+    each item in courses
+      li.mt-3.border.p-3
+        .jumbotron
+          .w-50.overflow-hidden.mx-auto.text-center
+            img.mw-100.card-img-top(src= item.src alt= item.title)
+          h1.display-4.text-center= item.title
+          p.lead= item.description
+          hr.my-4
+          p.lead
+            .row
+              .col
+                a.btn.btn-primary.btn-lg.w-100(href=`/course/update/${item.id}`) Edit
+              .col
+                form.form-inline.float-xs-right(action=`/course/delete/${item.id}?_method=DELETE` method='post')
+                  button.btn.btn-danger.btn-lg.w-100(type='submit') Delete
