@@ -1,0 +1,13 @@
+extends layouts/app.pug
+
+block content
+  ul.d-flex.flex-wrap.justify-content-between.list-unstyled
+    each item in courses
+      li.mt-3
+        .card.text-center.h-100(style='width: 18rem;')
+          img.card-img-top(src= item.src alt= item.title)
+          .card-body
+            h5.card-title= item.title
+            p.card-text.overflow-hidden.text-truncate= item.description
+            a.btn.btn-primary(href=`/course/${item.id}`) Go to course
+          .card-footer.text-muted= `Added: ${item.created.toLocaleDateString()}`
